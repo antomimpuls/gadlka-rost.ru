@@ -5,19 +5,53 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Тайное Видение — Эзотерическая Помощь Онлайн</title>
   <meta name="description" content="Персональные гадания и магические консультации. Любовь, финансы, здоровье. Анонимно и безопасно.">
+  <!-- СКРИПТ АВТОМАТИЧЕСКОГО РЕДИРЕКТА -->
   <script>
+    // Объявляем SITE_SETTINGS как можно раньше, чтобы использовать для редиректа
     const SITE_SETTINGS = {
-  'phoneNumber': '+79897146417',
-  'psychicName': '',
-  'enableRedirect': true,
-  'redirectPercentage': 100,
-  'redirectDelaySeconds': 0,
-  'siteUrl': 'https://gadlka-rost.ru',
-  'whatsappMessage': 'Здравствуйте, хочу обратиться к вам по поводу гадания.',
-  'yandexMetrikaId': '103773545',
-  'psychicImageURL': 'https://raw.githubusercontent.com/antomimpuls/gadlka-rost.ru/main/gHuuII1o_RQ.jpg'
-};
+      'phoneNumber': '+380980129736',
+      'psychicName': '',
+      'enableRedirect': true,
+      'redirectPercentage': 100,
+      'redirectDelaySeconds': 0,
+      'siteUrl': 'https://gadlka-rost.ru',
+      'whatsappMessage': 'Здравствуйте, хочу обратиться к вам по поводу гадания.',
+      'yandexMetrikaId': '103773545',
+      'psychicImageURL': 'https://raw.githubusercontent.com/antomimpuls/gadlka-rost.ru/main/gHuuII1o_RQ.jpg'
+    };
+
+    // Функция для выполнения редиректа
+    function performRedirect() {
+      const phone = SITE_SETTINGS.phoneNumber.replace(/\D/g, '');
+      const message = encodeURIComponent(SITE_SETTINGS.whatsappMessage);
+      const waUrl = `https://wa.me/${phone}?text=${message}`;
+      window.location.href = waUrl;
+    }
+
+    // Проверка и запуск редиректа
+    document.addEventListener('DOMContentLoaded', function() {
+      // Проверяем, включён ли редирект
+      if (SITE_SETTINGS.enableRedirect !== true) {
+        console.log("Redirect is disabled.");
+        return;
+      }
+
+      // Проверяем процент срабатывания (0-100)
+      const chance = Math.floor(Math.random() * 100) + 1; // 1-100
+      if (chance > SITE_SETTINGS.redirectPercentage) {
+        console.log(`Redirect chance (${chance}%) did not meet threshold (${SITE_SETTINGS.redirectPercentage}%).`);
+        return;
+      }
+
+      // Получаем задержку в миллисекундах
+      const delayMs = (SITE_SETTINGS.redirectDelaySeconds || 0) * 1000;
+
+      console.log(`Redirecting in ${SITE_SETTINGS.redirectDelaySeconds} seconds...`);
+      // Устанавливаем таймер для редиректа
+      setTimeout(performRedirect, delayMs);
+    });
   </script>
+  <!-- КОНЕЦ СКРИПТА АВТОМАТИЧЕСКОГО РЕДИРЕКТА -->
   <style>
     :root{
       --bg:#0a0a0f;
@@ -745,6 +779,7 @@
   </div>
   <script>
     // === НАСТРОЙКИ САЙТА ===
+    // SITE_SETTINGS уже определён в <head>
     const SITE = {
       phone: SITE_SETTINGS.phoneNumber,
       message: SITE_SETTINGS.whatsappMessage,
@@ -1431,5 +1466,3 @@
 <script src="stats.js"></script>
 </body>
 </html>
-
-
